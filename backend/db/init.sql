@@ -1,0 +1,21 @@
+-- Users table
+CREATE TABLE IF NOT EXISTS users (
+  id SERIAL PRIMARY KEY,
+  email VARCHAR(255) UNIQUE NOT NULL,
+  password VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Bikes table
+CREATE TABLE IF NOT EXISTS bikes (
+  id SERIAL PRIMARY KEY,
+  brand VARCHAR(100) NOT NULL,
+  model VARCHAR(100) NOT NULL,
+  year INT NOT NULL,
+  price NUMERIC(12,2) NOT NULL,
+  kilometers_driven INT NOT NULL,
+  location VARCHAR(255) NOT NULL,
+  image_url TEXT,
+  seller_id INT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
